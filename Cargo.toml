@@ -1,0 +1,43 @@
+[package]
+name = "rust-project"
+version = "0.1.0"
+authors = ["Juraj Sadel <juraj.sadel@espressif.com>"]
+edition = "2018"
+resolver = "2"
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+[patch.crates-io]
+embuild = { git="https://github.com/ivmarkov/embuild.git" }
+#esp-idf-hal = { version = "0.32.7", git = "https://github.com/esp-rs/esp-idf-hal"}
+
+[features]
+native = ["esp-idf-sys/native"]
+
+[dependencies]
+#esp-idf-sys = { version = "0.30.3", features = ["binstart"] }
+#embedded-hal = "=1.0.0-alpha.6"
+#embedded-hal-0-2 = { package = "embedded-hal", version = "0.2", features = ["unproven"] }
+#esp-idf-hal = { version = "=0.32.6" }
+#log = "0.4"
+nb = "0.1.2"
+mutex-trait = { version = "0.2", optional = true, default-features = false }
+embedded-hal = "=1.0.0-alpha.6"
+embedded-hal-0-2 = { package = "embedded-hal", version = "0.2", features = ["unproven"] }
+embedded-svc = { version = "0.16.4", optional = true, default-features = false }
+esp-idf-sys = { version = "0.30", optional = true, default-features = false, features = ["pio"] }
+critical-section = { version = "0.2.5", optional = true, features = ["custom-impl"] }
+embassy = { version = "0", optional = true }
+# The real version is this one and it needs to be patched into the binary crate:
+#embassy = { version = "0.1", git = "https://github.com/embassy-rs/embassy", optional = true, features = ["time", "time-tick-1mhz"] }
+esp-idf-hal = "0.32.10"
+
+
+[build-dependencies]
+embuild = "0.28"
+anyhow = "1"
