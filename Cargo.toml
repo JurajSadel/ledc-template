@@ -1,5 +1,5 @@
 [package]
-name = "rust-project"
+name = "ledc-template"
 version = "0.1.0"
 authors = ["Juraj Sadel <juraj.sadel@espressif.com>"]
 edition = "2018"
